@@ -98,6 +98,8 @@ export const Shell = ({ children }: { children: React.ReactNode }) => {
       <AppShell.Navbar p="md">
         {ALGORITHMS.map(({ title, route, segment }) => (
           <NavLink
+            variant="filled"
+            color="pink"
             key={segment}
             active={segment === layoutSegment}
             label={title}

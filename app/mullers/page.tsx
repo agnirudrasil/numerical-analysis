@@ -20,6 +20,40 @@ export default function Mullers() {
       tol: 0.0001,
       n: 12,
     },
+    validate: {
+      f: (value) => {
+        try {
+          compile(value).evaluate({ x: 0 });
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+      p0: (value) => {
+        try {
+          evaluate(value);
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+      p1: (value) => {
+        try {
+          evaluate(value);
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+      p2: (value) => {
+        try {
+          evaluate(value);
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+    },
   });
 
   const [data, setData] = useState<number[][]>([]);
@@ -33,7 +67,7 @@ export default function Mullers() {
       <LinearAlgorithmInput
         form={form}
         onSubmit={({ f, p0, p1, p2, n, tol }) => {
-          const compiledF = compile(f);
+          const compiledF = compile(f.toLowerCase());
           const output = mullers(
             (x) => compiledF.evaluate({ x }),
             { p0: evaluate(p0), p1: evaluate(p1), p2: evaluate(p2) },

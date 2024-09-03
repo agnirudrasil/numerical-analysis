@@ -18,6 +18,32 @@ export default function BisectionMethod() {
       tol: 0.0001,
       n: 12,
     },
+    validate: {
+      f: (value) => {
+        try {
+          compile(value).evaluate({ x: 0 });
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+      a: (value) => {
+        try {
+          evaluate(value);
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+      b: (value) => {
+        try {
+          evaluate(value);
+          return null;
+        } catch (error: any) {
+          return error.toString();
+        }
+      },
+    },
   });
 
   const [data, setData] = useState<number[][]>([]);
@@ -31,7 +57,7 @@ export default function BisectionMethod() {
       <LinearAlgorithmInput
         form={form}
         onSubmit={({ f, a, b, n, tol }) => {
-          const compiledF = compile(f);
+          const compiledF = compile(f.toLowerCase());
           const output = bisection(
             (x) => compiledF.evaluate({ x }),
             { a: evaluate(a), b: evaluate(b) },

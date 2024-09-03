@@ -47,7 +47,9 @@ export const LinearAlgorithmInput = <T,>({
           key={form.key('n')}
           {...form.getInputProps('n')}
         />
-        <Button type="submit">Solve</Button>
+        <Button color="pink" type="submit">
+          Solve
+        </Button>
       </Stack>
     </form>
   );
