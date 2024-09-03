@@ -7,16 +7,15 @@ export function Welcome() {
       <Title className={classes.title} ta="center" mt={100}>
         Welcome to{' '}
         <Text inherit variant="gradient" component="span" gradient={{ from: 'pink', to: 'yellow' }}>
-          Mantine
+          Numerical Analysis
         </Text>
       </Title>
       <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        This starter Next.js project includes a minimal setup for server side rendering, if you want
-        to learn more on Mantine + Next.js integration follow{' '}
+        Built with ❤️ by Agnirudra Sil. Source code can be found on{' '}
         <Anchor href="https://mantine.dev/guides/next/" size="lg">
-          this guide
+          github
         </Anchor>
-        . To get started edit page.tsx file.
+        . Please find the available numerical analysis algorithms in the sidebar.
       </Text>
     </>
   );
