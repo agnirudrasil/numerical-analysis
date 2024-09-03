@@ -1,7 +1,8 @@
 'use client';
 
+import { Suspense } from 'react';
 import { IconMoon, IconSun } from '@tabler/icons-react';
-import { ActionIcon, Button, Group, Menu, rem, useMantineColorScheme } from '@mantine/core';
+import { ActionIcon, Menu, useMantineColorScheme } from '@mantine/core';
 
 export function ColorSchemeToggle() {
   const { setColorScheme, colorScheme } = useMantineColorScheme();
@@ -9,12 +10,14 @@ export function ColorSchemeToggle() {
   return (
     <Menu>
       <Menu.Target>
-        <ActionIcon variant="default">
-          {colorScheme === 'light' ? (
-            <IconSun style={{ width: '70%', height: '70%' }} stroke={1.5} />
-          ) : (
-            <IconMoon style={{ width: '70%', height: '70%' }} stroke={1.5} />
-          )}
+        <ActionIcon m="md" color="pink">
+          <Suspense>
+            {colorScheme === 'light' ? (
+              <IconSun style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            ) : (
+              <IconMoon style={{ width: '70%', height: '70%' }} stroke={1.5} />
+            )}
+          </Suspense>
         </ActionIcon>
       </Menu.Target>
 
