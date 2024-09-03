@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
+import { title } from 'process';
 import {
   Anchor,
   AppShell,
@@ -42,6 +43,21 @@ const ALGORITHMS = [
     title: "Müller's Method",
     route: '/mullers',
     segment: 'mullers',
+  },
+  {
+    title: "Jacobi's Method",
+    route: '/jacobi',
+    segment: 'jacobi',
+  },
+  {
+    title: 'Gauss-Seidel',
+    route: '/gauss-seidel',
+    segment: 'gauss-seidel',
+  },
+  {
+    title: 'Success Over-Relaxation',
+    route: '/sor',
+    segment: 'sor',
   },
 ];
 
