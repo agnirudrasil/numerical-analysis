@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { AppShell, Burger, Group, NavLink, Skeleton } from '@mantine/core';
+import { Anchor, AppShell, Burger, Group, NavLink, Skeleton, Space, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
+import { Title as Logo } from '@/components/Title';
 
 const ALGORITHMS = [
   {
@@ -52,6 +53,11 @@ export const Shell = ({ children }: { children: React.ReactNode }) => {
       <AppShell.Header>
         <Group h="100%" px="md">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <Anchor component={Link} href="/" c="pink">
+            <Title component="span" style={{ fontWeight: 'bold' }}>
+              <Logo />
+            </Title>
+          </Anchor>
           <ColorSchemeToggle />
         </Group>
       </AppShell.Header>
