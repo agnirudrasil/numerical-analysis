@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { IconAdjustmentsHorizontal, IconArrowIteration } from '@tabler/icons-react';
+import { MathType } from 'mathjs';
 import { Button, NumberInput, Space, Stack, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import { MatrixInput } from '../MatrixInput';
 
-export const MatrixAlgorithmInput = <T,>({
+export const NonLinearInput = <T,>({
   children,
   form,
   onSubmit,
@@ -13,11 +14,9 @@ export const MatrixAlgorithmInput = <T,>({
   form: UseFormReturnType<T>;
   onSubmit: (values: T) => void;
 }) => {
-  const [a, setA] = useState<number[][]>([]);
-  const [b, setB] = useState<number[][]>([]);
+  const [F, setF] = useState<MathType[][]>([]);
 
-  form.watch('A', ({ value }) => setA(value as any));
-  form.watch('b', ({ value }) => setB(value as any));
+  form.watch('F', ({ value }) => setF(value as any));
 
   return (
     <form onSubmit={form.onSubmit(onSubmit)}>
@@ -28,24 +27,14 @@ export const MatrixAlgorithmInput = <T,>({
         <MatrixInput
           label={
             <Text component="span" fw={800}>
-              A
+              <strong>F(x)</strong>
             </Text>
           }
-          description="Enter the coefficient matrix A."
-          value={a}
-          key={form.key('A')}
-          onChange={(v) => form.setFieldValue('A', v as any)}
-        />
-        <MatrixInput
-          label={
-            <Text component="span" fw={800}>
-              b
-            </Text>
-          }
-          key={form.key('b')}
-          description="Enter the result matrix A."
-          value={b}
-          onChange={(v) => form.setFieldValue('b', v as any)}
+          description="Enter the system of equations."
+          value={F}
+          key={form.key('F')}
+          onChange={(v) => form.setFieldValue('F', v as any)}
+          fixedColumns={1}
         />
         <Space />
         {children}

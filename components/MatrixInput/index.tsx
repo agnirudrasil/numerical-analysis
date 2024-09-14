@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IconEdit, IconX } from '@tabler/icons-react';
-import { MathType, row } from 'mathjs';
+import { compile, MathType, parse } from 'mathjs';
+import Latex from 'react-latex-next';
 import {
   ActionIcon,
   Button,
@@ -17,23 +18,27 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useDisclosure } from '@mantine/hooks';
-import classes from './MatrixInput.module.css';
+import { Matrix } from './matrix';
 
 export const MatrixInput = ({
   onChange,
   value,
   label,
   description,
+  fixedColumns,
+  fixedRows,
 }: {
   ButtonComponent?: any;
   onChange: (v: MathType[][]) => any;
   value?: MathType[][];
   label?: React.ReactNode;
   description?: React.ReactNode;
+  fixedRows?: number;
+  fixedColumns?: number;
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [rows, setRows] = useState<number | string>('');
-  const [columns, setColumns] = useState<number | string>('');
+  const [rows, setRows] = useState<number | string>(fixedRows || '');
+  const [columns, setColumns] = useState<number | string>(fixedColumns || '');
   const form = useForm({
     mode: 'uncontrolled',
     initialValues: {
@@ -76,6 +81,7 @@ export const MatrixInput = ({
                 min={1}
                 onChange={(e) => setRows(typeof e === 'number' ? e : parseInt(e))}
                 placeholder="Rows"
+                readOnly={typeof fixedRows === 'number'}
               />
               <ThemeIcon variant="transparent" color="grey">
                 <IconX style={{ width: '70%', height: '70%' }} />
@@ -86,11 +92,12 @@ export const MatrixInput = ({
                 step={1}
                 min={1}
                 onChange={(e) => setColumns(typeof e === 'number' ? e : parseInt(e))}
+                readOnly={typeof fixedColumns === 'number'}
               />
             </Group>
           </Stack>
           {typeof rows !== 'string' && typeof columns !== 'string' && (
-            <Stack className={classes.matrix} gap="xs" p="xs">
+            <Matrix>
               {Array.from({ length: rows }, (_, i) => (
                 <Group grow wrap="nowrap" key={i} gap="xs">
                   {Array.from({ length: columns }, (_, j) => (
@@ -102,7 +109,7 @@ export const MatrixInput = ({
                   ))}
                 </Group>
               ))}
-            </Stack>
+            </Matrix>
           )}
           <Button
             onClick={() => {
@@ -120,15 +127,17 @@ export const MatrixInput = ({
         <InputDescription>{description}</InputDescription>
         {value && value.length && value[0].length ? (
           <Group mt="sm" w="max-content">
-            <Stack className={classes.matrix} gap="xs" p="xs">
+            <Matrix>
               {value.map((row, i) => (
-                <Group grow wrap="nowrap" key={i} gap="xs">
+                <Group wrap="nowrap" key={i} gap="xs">
                   {row.map((el, j) => (
-                    <Text key={`${i}.${j}`}>{el.toString()}</Text>
+                    <Text key={`${i}.${j}`}>
+                      <Latex>${parse(el as unknown as string).toTex()}$</Latex>
+                    </Text>
                   ))}
                 </Group>
               ))}
-            </Stack>
+            </Matrix>
             <ActionIcon onClick={open} color="pink" variant="filled">
               <IconEdit style={{ width: '70%', height: '70%' }} stroke={1.5} />
             </ActionIcon>

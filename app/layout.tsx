@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import 'katex/dist/katex.min.css';
 
 import React from 'react';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';

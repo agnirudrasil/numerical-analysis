@@ -34,7 +34,7 @@ export const successiveOverRelaxation: MatrixAlgorithm<{ w: number }> = (
       return data;
     }
     x0 = JSON.parse(JSON.stringify(x));
-    k++;
+    k += 1;
   }
 
   return data;

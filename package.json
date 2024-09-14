@@ -27,7 +27,8 @@
     "mathjs": "^13.1.1",
     "next": "14.2.4",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-latex-next": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -45,6 +46,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.8",
     "@types/react": "18.3.3",
+    "@types/react-latex": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "babel-loader": "^9.1.3",

@@ -2,18 +2,7 @@
 
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { title } from 'process';
-import {
-  Anchor,
-  AppShell,
-  Burger,
-  Group,
-  NavLink,
-  Skeleton,
-  Space,
-  Stack,
-  Title,
-} from '@mantine/core';
+import { Anchor, AppShell, Burger, Group, NavLink, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
 import { Title as Logo } from '@/components/Title';
@@ -58,6 +47,11 @@ const ALGORITHMS = [
     title: 'Success Over-Relaxation',
     route: '/sor',
     segment: 'sor',
+  },
+  {
+    title: "Newton's Method for Non-Linear Systems",
+    route: '/newtons-2',
+    segment: 'newtons-2',
   },
 ];
 
